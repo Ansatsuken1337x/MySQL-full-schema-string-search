@@ -1,13 +1,14 @@
 CREATE DEFINER=`root`@`localhost` PROCEDURE `findThatString`(
 	IN databaseToSearch VARCHAR(255),
-    IN needle VARCHAR(255),
-    IN limitQtdTables INT,
-    IN offsetTable INT
+    	IN needle VARCHAR(255),
+    	IN limitQtdTables INT,
+    	IN offsetTable INT
 )
 BLOCK1: BEGIN
-    DECLARE done1, done2									BOOL default false;
+    DECLARE done1, done2 					BOOL default false;
     DECLARE tablename, temp_table, colname, temp_column		CHAR(255);
     DECLARE cur1 CURSOR FOR SELECT DISTINCT TABLE_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = databaseToSearch LIMIT limitQtdTables OFFSET offsetTable;
+    -- This handler is for debug purpose only
     DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
 		SELECT @s1;
     SET @match_found := FALSE;
