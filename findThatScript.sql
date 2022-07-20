@@ -11,9 +11,9 @@ BLOCK1: BEGIN
     -- This handler is for debug purpose only
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
 		SELECT @s1;
+		
     SET @match_found := FALSE;
     OPEN cur1;
-    
     LOOP1: loop
         FETCH cur1 INTO tablename;
         
@@ -21,6 +21,7 @@ BLOCK1: BEGIN
             DECLARE cur2 CURSOR FOR SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = databaseToSearch AND TABLE_NAME = tablename;
             DECLARE CONTINUE HANDLER FOR NOT FOUND 
 				SET done = TRUE;
+				
             SET done := FALSE;
             SET @match_found := 0;
             OPEN cur2;
