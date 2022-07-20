@@ -44,10 +44,5 @@ BLOCK1: BEGIN
 				END IF;	
 			END loop LOOP2;
         END BLOCK2;
-        
-        -- IF @match_found THEN
-            -- CLOSE cur1;
-            -- LEAVE LOOP1;
-        -- END IF;
     END loop LOOP1;
 END BLOCK1
