@@ -14,7 +14,7 @@ BLOCK1: BEGIN
 		
     SET @match_found := FALSE;
     OPEN cur1;
-    LOOP1: loop
+    LOOP1: LOOP
         FETCH cur1 INTO tablename;
         
         BLOCK2: BEGIN
@@ -25,7 +25,7 @@ BLOCK1: BEGIN
             SET done := FALSE;
             SET @match_found := 0;
             OPEN cur2;
-			LOOP2: loop	
+			LOOP2: LOOP	
 				FETCH cur2 INTO colname;
                 IF done THEN
                     CLOSE cur2;
@@ -42,7 +42,7 @@ BLOCK1: BEGIN
 					CLOSE cur2;
 					LEAVE BLOCK2;
 				END IF;	
-			END loop LOOP2;
+			END LOOP LOOP2;
         END BLOCK2;
-    END loop LOOP1;
+    END LOOP LOOP1;
 END BLOCK1
